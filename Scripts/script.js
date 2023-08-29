@@ -94,23 +94,19 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  
+
   let length = 0;
   //storing the length of the password via user input. Will keep asking the user for the correct input before moving on.
-  while(length < minPasswordCharacters || length > maxPasswordCharacters || isNaN(length))
-  {
+  while (length < minPasswordCharacters || length > maxPasswordCharacters || isNaN(length)) {
     //Filters to int so we can collect the correct type of data for use later in the program. 
     length = parseInt(prompt("How many characters would you like your password to have? \n Enter a number between 10-64.", 10)); //specifies denary numbers, else other number types could be supported
-    if(isNaN(length))
-    {
+    if (isNaN(length)) {
       alert("Password length must be a number");
     }
-    else if(length < minPasswordCharacters)
-    {
+    else if (length < minPasswordCharacters) {
       alert("Password length must be grteater than 10");
     }
-    else if(length > maxPasswordCharacters)
-    {
+    else if (length > maxPasswordCharacters) {
       alert("Password length must be less than 64");
     }
   }
@@ -121,20 +117,18 @@ function getPasswordOptions() {
   let hasNumericCharacters = false;
   let hasUpperCaseCharacters = false;
   let hasLowerCaseCharacters = false;
-  while(!hasLowerCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters && !hasUpperCaseCharacters)
-  {
+  while (!hasLowerCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters && !hasUpperCaseCharacters) {
     //asking user to confirm each character type, one by one.
     hasSpecialCharacters = confirm("Click 'OK' if you would like special characters in your password!");
     hasUpperCaseCharacters = confirm("Click 'OK' if you would like special characters in your password!");
     hasNumericCharacters = confirm("Click 'OK' if you would like special characters in your password!");
     hasLowerCaseCharacters = confirm("Click 'OK' if you would like lower case characters in your password!");
     //alerting the user that they must click OK on at least one of the above options.
-    if (!hasLowerCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters && !hasUpperCaseCharacters)
-    {
+    if (!hasLowerCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters && !hasUpperCaseCharacters) {
       alert("Your password must contain at least one character type! \n Make sure you click okay on at least one of the options presented!");
     }
   }
-  
+
   //creating the passwordOptions object to be returned at the end of this function.
   let passwordOptions = {
     passwordLength: length,
@@ -159,35 +153,30 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  options = getPasswordOptions();
-  passwordCharacters = []; //setting the array for the password characters to be used later
-  possibleCharacters = []; //store arrays of all valid characters
-  if (options.hasLowerCaseCharacters)
-  {
+  let options = getPasswordOptions();
+  let passwordCharacters = []; //setting the array for the password characters to be used later
+  let possibleCharacters = []; //store arrays of all valid characters
+  if (options.hasLowerCaseCharacters) {
     possibleCharacters = possibleCharacters.concat(lowerCasedCharacters); //adds lower case character array to possible characters
   }
-  if(options.hasUpperCaseCharacters)
-  {
+  if (options.hasUpperCaseCharacters) {
     possibleCharacters = possibleCharacters.concat(upperCasedCharacters); //adds uper case character array to possible characters
   }
-  if(options.hasNumericCharacters)
-  {
+  if (options.hasNumericCharacters) {
     possibleCharacters = possibleCharacters.concat(numericCharacters); //adds numeric character array to possible characters
   }
-  if(options.hasSpecialCharacters)
-  {
+  if (options.hasSpecialCharacters) {
     possibleCharacters = possibleCharacters.concat(specialCharacters); //adds special character array to possible characters
   }
-  tmpPasswordLength = options.passwordLength;
 
-  while(tmpPasswordLength > 0)
-  {
+  let tmpPasswordLength = options.passwordLength; //setting the size for the while loop below
+
+  while (tmpPasswordLength > 0) {
     passwordCharacters.push(getRandom(possibleCharacters)); //will return a random value from the possible character array and add it to the generated password
-    tmpPasswordLength --;
-    console.log(`Password is currently: ${passwordCharacters}`);
+    tmpPasswordLength--;
+    console.log(`Password is currently: ${passwordCharacters}`); //print each step of randomisation
   }
-  alert(`Password generated is: ${passwordCharacters}`);
-  return passwordCharacters.join("");
+  return passwordCharacters.join(""); //joins each element in the array to be displayed on the website
 }
 
 // Get references to the #generate element
