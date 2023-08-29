@@ -97,6 +97,18 @@ function getPasswordOptions() {
   {
     //Filters to int so we can collect the correct type of data for use later in the program. 
     length = parseInt(prompt("How many characters would you like your password to have? \n Enter a number between 10-64.", 10)); //specifies denary numbers, else other number types could be supported
+    if(isNaN(length))
+    {
+      alert("Password length must be a number");
+    }
+    else if(length < 10)
+    {
+      alert("Password length must be grteater than 10");
+    }
+    else if(length > 64)
+    {
+      alert("Password length must be less than 64");
+    }
   }
   return length; //returns length as a number to be used in future logic.
 }
@@ -110,7 +122,11 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-
+  passwordLength = getPasswordOptions();
+  while(passWordLength > 0)
+  {
+    getRandom();
+  }
 }
 
 // Get references to the #generate element
