@@ -1,3 +1,7 @@
+//consts to allow quick adjustments to the password criteria.
+const minPasswordCharacters = 10;
+const maxPasswordCharacters = 64;
+
 // Array of special characters to be included in password
 var specialCharacters = [
   '@',
@@ -93,7 +97,7 @@ function getPasswordOptions() {
   
   let length = 0;
   //storing the length of the password via user input. Will keep asking the user for the correct input before moving on.
-  while(length < 10 || length > 64 || isNaN(length))
+  while(length < minPasswordCharacters || length > maxPasswordCharacters || isNaN(length))
   {
     //Filters to int so we can collect the correct type of data for use later in the program. 
     length = parseInt(prompt("How many characters would you like your password to have? \n Enter a number between 10-64.", 10)); //specifies denary numbers, else other number types could be supported
@@ -101,28 +105,30 @@ function getPasswordOptions() {
     {
       alert("Password length must be a number");
     }
-    else if(length < 10)
+    else if(length < minPasswordCharacters)
     {
       alert("Password length must be grteater than 10");
     }
-    else if(length > 64)
+    else if(length > maxPasswordCharacters)
     {
       alert("Password length must be less than 64");
     }
   }
 
   //getting user inputs for type of characters they would like in their password.
+  //values declared here to set the correct state for future logic.
   let hasSpecialCharacters = false;
   let hasNumericCharacters = false;
   let hasUpperCaseCharacters = false;
   let hasLowerCaseCharacters = false;
   while(!hasLowerCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters && !hasUpperCaseCharacters)
   {
-    hasSpecialCharacters = confirm("Click 'Okay' if you would like special characters in your password!");
-    hasUpperCaseCharacters = confirm("Click 'Okay' if you would like special characters in your password!");
-    hasNumericCharacters = confirm("Click 'Okay' if you would like special characters in your password!");
-    hasLowerCaseCharacters = confirm("Click 'Okay' if you would like lower case characters in your password!");
-    //alerting the user that they must click okay on at least one of the above options.
+    //asking user to confirm each character type, one by one.
+    hasSpecialCharacters = confirm("Click 'OK' if you would like special characters in your password!");
+    hasUpperCaseCharacters = confirm("Click 'OK' if you would like special characters in your password!");
+    hasNumericCharacters = confirm("Click 'OK' if you would like special characters in your password!");
+    hasLowerCaseCharacters = confirm("Click 'OK' if you would like lower case characters in your password!");
+    //alerting the user that they must click OK on at least one of the above options.
     if (!hasLowerCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters && !hasUpperCaseCharacters)
     {
       alert("Your password must contain at least one character type! \n Make sure you click okay on at least one of the options presented!");
