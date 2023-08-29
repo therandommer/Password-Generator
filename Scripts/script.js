@@ -104,7 +104,7 @@ function getPasswordOptions() {
       alert("Password length must be a number");
     }
     else if (length < minPasswordCharacters) {
-      alert("Password length must be grteater than 10");
+      alert("Password length must be greater than 10");
     }
     else if (length > maxPasswordCharacters) {
       alert("Password length must be less than 64");
