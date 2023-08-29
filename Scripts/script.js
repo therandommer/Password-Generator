@@ -110,6 +110,25 @@ function getPasswordOptions() {
       alert("Password length must be less than 64");
     }
   }
+
+  //getting user inputs for type of characters they would like in their password.
+  let hasSpecialCharacters = false;
+  let hasNumericCharacters = false;
+  let hasUpperCaseCharacters = false;
+  let hasLowerCaseCharacters = false;
+  while(!hasLowerCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters && !hasUpperCaseCharacters)
+  {
+    hasSpecialCharacters = confirm("Click 'Okay' if you would like special characters in your password!");
+    hasUpperCaseCharacters = confirm("Click 'Okay' if you would like special characters in your password!");
+    hasNumericCharacters = confirm("Click 'Okay' if you would like special characters in your password!");
+    hasLowerCaseCharacters = confirm("Click 'Okay' if you would like lower case characters in your password!");
+    //alerting the user that they must click okay on at least one of the above options.
+    if (!hasLowerCaseCharacters && !hasNumericCharacters && !hasSpecialCharacters && !hasUpperCaseCharacters)
+    {
+      alert("Your password must contain at least one character type! \n Make sure you click okay on at least one of the options presented!");
+    }
+  }
+  
   return length; //returns length as a number to be used in future logic.
 }
 
@@ -123,7 +142,7 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   passwordLength = getPasswordOptions();
-  while(passWordLength > 0)
+  while(passwordLength > 0)
   {
     getRandom();
   }
