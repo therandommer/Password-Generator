@@ -150,7 +150,9 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  let randomIndex = Math.floor(Math.random * arr.length); //random number to refer to specific character in array.
+  console.log(`receiving array \n ${arr}`);
+  let randomIndex = Math.floor(Math.random() * arr.length); //random number to refer to specific character in array.
+  console.log(`Random index is: ${randomIndex}`);
   console.log(`Random value is ${arr[randomIndex]}`); //console log for debugging reference
   return arr[randomIndex]; //returns the random index value selected earlier.
 }
@@ -158,7 +160,33 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   options = getPasswordOptions();
-  
+  passwordCharacters = []; //setting the array for the password characters to be used later
+  possibleCharacters = []; //store arrays of all valid characters
+  if (options.hasLowerCaseCharacters)
+  {
+    possibleCharacters = possibleCharacters.concat(lowerCasedCharacters); //adds lower case character array to possible characters
+  }
+  if(options.hasUpperCaseCharacters)
+  {
+    possibleCharacters = possibleCharacters.concat(upperCasedCharacters); //adds uper case character array to possible characters
+  }
+  if(options.hasNumericCharacters)
+  {
+    possibleCharacters = possibleCharacters.concat(numericCharacters); //adds numeric character array to possible characters
+  }
+  if(options.hasSpecialCharacters)
+  {
+    possibleCharacters = possibleCharacters.concat(specialCharacters); //adds special character array to possible characters
+  }
+  tmpPasswordLength = options.passwordLength;
+
+  while(tmpPasswordLength > 0)
+  {
+    passwordCharacters.push(getRandom(possibleCharacters)); //will return a random value from the possible character array and add it to the generated password
+    tmpPasswordLength --;
+    console.log(`Password is currently: ${passwordCharacters}`);
+  }
+  alert(`Password generated is: ${passwordCharacters}`);
 }
 
 // Get references to the #generate element
