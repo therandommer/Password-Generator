@@ -90,7 +90,14 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  
+  let length = 0;
+  //storing the length of the password via user input. Will keep asking the user for the correct input before moving on.
+  while(length < 10 || length > 64 || isNaN(length))
+  {
+    //Filters to int so we can collect the correct type of data for use later in the program. 
+    length = parseInt(prompt("How many characters would you like your password to have? \n Enter a number between 10-64.", 10)); //specifies denary numbers, else other number types could be supported
+  }
 }
 
 // Function for getting a random element from an array
@@ -110,7 +117,7 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
+  getPasswordOptions();
   passwordText.value = password;
 }
 
