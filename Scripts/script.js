@@ -135,7 +135,17 @@ function getPasswordOptions() {
     }
   }
   
-  return length; //returns length as a number to be used in future logic.
+  //creating the passwordOptions object to be returned at the end of this function.
+  let passwordOptions = {
+    passwordLength: length,
+    hasLowerCaseCharacters: hasLowerCaseCharacters,
+    hasNumericCharacters: hasNumericCharacters,
+    hasSpecialCharacters: hasSpecialCharacters,
+    hasUpperCaseCharacters: hasUpperCaseCharacters
+  }
+
+  console.log(passwordOptions); //returning the passwordOptions object to the console.
+  return passwordOptions; //returns length as a number to be used in future logic.
 }
 
 // Function for getting a random element from an array
@@ -147,11 +157,8 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  passwordLength = getPasswordOptions();
-  while(passwordLength > 0)
-  {
-    getRandom();
-  }
+  options = getPasswordOptions();
+  
 }
 
 // Get references to the #generate element
