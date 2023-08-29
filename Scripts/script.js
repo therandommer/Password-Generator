@@ -187,6 +187,7 @@ function generatePassword() {
     console.log(`Password is currently: ${passwordCharacters}`);
   }
   alert(`Password generated is: ${passwordCharacters}`);
+  return passwordCharacters.join("");
 }
 
 // Get references to the #generate element
